@@ -24,6 +24,7 @@ home.get('/', async (req, res) => {
       projects,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 });

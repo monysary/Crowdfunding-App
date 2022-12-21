@@ -1,5 +1,5 @@
 const profile = require('express').Router();
-const withAuth = require('../helpers/auth.js');
+const withAuth = require('../utils/auth.js');
 const { Project } = require('../models');
 
 profile.get('/', withAuth, async (req, res) => {
