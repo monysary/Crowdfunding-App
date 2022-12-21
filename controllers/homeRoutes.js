@@ -6,6 +6,7 @@ home.get('/', async (req, res) => {
     const dbProjects = await Project.findAll({
       // include: [
       //   {
+      //     model: Project,
       //     attributes: [
       //       'id',
       //       'name',
