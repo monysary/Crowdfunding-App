@@ -7,4 +7,8 @@ module.exports = {
       new Date(date).getFullYear() + 5
     }`;
   },
+  format_amount: (amount) => {
+    // format large numbers with commas
+    return parseInt(amount).toLocaleString();
+  },
 };
