@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Sponsor Me!</title>
+</head>
+<body>
+    <header class="display-flex justify-space-between align-center p-2">
+        <h1>
+            <a href="/">Go Sponsor Me!</a>
+        </h1>
+        <nav>
+            {{#if logged_in}}
+            <a href="/profile">Profile</a> |
+            <button class="no-button" id="logout">Logout</button>
+            {{else}}
+            <a href="/login">Login</a>
+            {{/if}}
+        </nav>
+    </header>
+
+    <main class="container container-fluid mt-5">
+        {{{body}}}
+    </main>
+</body>
+</html>
