@@ -22,7 +22,6 @@ home.get('/', async (req, res) => {
 
     res.render('homepage', {
       projects,
-      loggedIn: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
