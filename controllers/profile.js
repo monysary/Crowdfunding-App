@@ -7,18 +7,6 @@ profile.get('/', withAuth, async (req, res) => {
     const userProjects = await Project.findAll({
       where: {
         user_id: req.session.user_id,
-        include: [
-          {
-            model: Project,
-            attributes: [
-              'id',
-              'name',
-              'description',
-              `date_created`,
-              `needed_funding`,
-            ],
-          },
-        ],
       },
     });
 
@@ -26,7 +14,7 @@ profile.get('/', withAuth, async (req, res) => {
       project.get({ plain: true })
     );
 
-    res.render('profile', projects);
+    res.render('profile', { projects });
   } catch (err) {
     res.status(500).json(err);
   }
