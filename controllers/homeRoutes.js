@@ -1,7 +1,7 @@
-const home = require('express').Router();
+const router = require('express').Router();
 const { Project } = require('../models');
 
-home.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const dbProjects = await Project.findAll({});
 
@@ -16,7 +16,7 @@ home.get('/', async (req, res) => {
   }
 });
 
-home.get('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
     return;
@@ -24,4 +24,4 @@ home.get('/login', async (req, res) => {
   res.render('login');
 });
 
-module.exports = home;
+module.exports = router;
