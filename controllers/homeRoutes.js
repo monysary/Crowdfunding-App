@@ -1,22 +1,9 @@
-const home = require('express').Router();
+const router = require('express').Router();
 const { Project } = require('../models');
 
-home.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const dbProjects = await Project.findAll({
-      include: [
-        {
-          model: Project,
-          attributes: [
-            'id',
-            'name',
-            'description',
-            `date_created`,
-            `needed_funding`,
-          ],
-        },
-      ],
-    });
+    const dbProjects = await Project.findAll({});
 
     const projects = dbProjects.map((project) => project.get({ plain: true }));
 
@@ -28,4 +15,4 @@ home.get('/', async (req, res) => {
   }
 });
 
-module.exports = home;
+module.exports = router;
