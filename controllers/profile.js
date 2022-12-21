@@ -1,23 +1,32 @@
 const profile = require('express').Router();
-const withAuth = require('../utils/auth.js');
+const withAuth = require('../helpers/auth.js');
+const { Project } = require('../models');
 
 profile.get('/', withAuth, async (req, res) => {
   try {
-    const dbProjects = await Project.findAll({
-      include: [
-        {
-          model: Project,
-          attributes: [''],
-        },
-      ],
+    const userProjects = await Project.findAll({
+      where: {
+        user_id: req.session.user_id,
+        include: [
+          {
+            model: Project,
+            attributes: [
+              'id',
+              'name',
+              'description',
+              `date_created`,
+              `needed_funding`,
+            ],
+          },
+        ],
+      },
     });
 
-    const projects = dbProjects.map((project) => project.get({ plain: true }));
+    const projects = userProjects.map((project) =>
+      project.get({ plain: true })
+    );
 
-    res.render('homepage', {
-      projects,
-      loggedIn: req.session.logged_in,
-    });
+    res.render('profile', projects);
   } catch (err) {
     res.status(500).json(err);
   }
