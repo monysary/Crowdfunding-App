@@ -1,7 +1,7 @@
-const home = require('express').Router();
+const router = require('express').Router();
 const { Project } = require('../models');
 
-home.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const dbProjects = await Project.findAll({
       // include: [
@@ -29,4 +29,4 @@ home.get('/', async (req, res) => {
   }
 });
 
-module.exports = home;
+module.exports = router;
