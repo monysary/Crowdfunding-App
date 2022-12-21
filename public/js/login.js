@@ -41,7 +41,7 @@ const signupForm = async (event) => {
 
   const name = document.querySelector('#signup_name');
   const email = document.querySelector('#signup_email');
-  const password = document.querySelector('signup_password');
+  const password = document.querySelector('#signup_password');
 
   if ( name && email && password) {
     const return = await fetch('/api/users', {
@@ -56,7 +56,7 @@ const signupForm = async (event) => {
     console.error(return.statusText);
   };
 
-  
+
   // add event listeners
 
   document.querySelector('.loginForm').addEventListener('submit', loginForm);
