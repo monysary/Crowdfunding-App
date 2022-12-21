@@ -1,5 +1,5 @@
 const home = require('express').Router();
-const { Project, User } = require('../models');
+const { Project } = require('../models');
 
 home.get('/', async (req, res) => {
   try {
@@ -7,7 +7,13 @@ home.get('/', async (req, res) => {
       include: [
         {
           model: Project,
-          attributes: [''],
+          attributes: [
+            'id',
+            'name',
+            'description',
+            `date_created`,
+            `needed_funding`,
+          ],
         },
       ],
     });
