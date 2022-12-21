@@ -18,7 +18,7 @@ const loginForm = async (event) => {
 
   // if users enters both email and password, continue to fetch request (POST) .
 
-  const return = await fetch('/api/users/login', 
+  const response = await fetch('/api/users/login', 
     {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -27,10 +27,10 @@ const loginForm = async (event) => {
 
   // if the login was successful, redirect to profile page /profile
 
-  if (return.ok) {
+  if (response.ok) {
     window.location.href = '/profile';
   } else {
-    console.error(return.statusText);
+    console.error(response.statusText);
   }
 
 
@@ -44,16 +44,16 @@ const signupForm = async (event) => {
   const password = document.querySelector('#signup_password');
 
   if ( name && email && password) {
-    const return = await fetch('/api/users', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: { 'Content-Type': 'application/json' },     
     });
 
-  if (return.ok) {
+  if (response.ok) {
     window.location.href = '/profile';
   } else {
-    console.error(return.statusText);
+    console.error(response.statusText);
   };
 
 

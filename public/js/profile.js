@@ -10,14 +10,14 @@ const profileForm = async (event) => {
   const projectFunding = document.querySelector('#projectFunding');
 
   if (projectName && projectDescription && projectFunding) {
-    const return = await fetch(`/api/projects`, {
+    const response = await fetch(`/api/projects`, {
       method: 'POST',
       body: JSON.stringify({ projectName, projectDescription, projectFunding }),
       headers: { 'Content-Type': 'application/json', 
     },
     });
 
-    if (return.ok) {
+    if (response.ok) {
     window.location.href = '/profile';
     } else {
       alert('Application failed to create your project');
@@ -36,7 +36,7 @@ const deleteButton = async (event) => {
       method: 'DELETE',
     });
 
-if (return.ok) {
+if (response.ok) {
     window.location.href = '/profile';
     } else {
       alert('Application failed to delete your project');
