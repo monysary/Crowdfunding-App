@@ -3,20 +3,7 @@ const { Project } = require('../models');
 
 home.get('/', async (req, res) => {
   try {
-    const dbProjects = await Project.findAll({
-      // include: [
-      //   {
-      //     model: Project,
-      //     attributes: [
-      //       'id',
-      //       'name',
-      //       'description',
-      //       `date_created`,
-      //       `needed_funding`,
-      //     ],
-      //   },
-      // ],
-    });
+    const dbProjects = await Project.findAll({});
 
     const projects = dbProjects.map((project) => project.get({ plain: true }));
 
@@ -27,6 +14,14 @@ home.get('/', async (req, res) => {
     console.error(err);
     res.status(500).json(err);
   }
+});
+
+home.get('/login', async (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render('login');
 });
 
 module.exports = home;
